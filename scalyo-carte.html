@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Scalyo — Areski</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #06070A;
+    --dark: #0D0F14;
+    --dark2: #13151C;
+    --violet: #7B5CF5;
+    --violet-dim: rgba(123,92,245,0.12);
+    --violet-border: rgba(123,92,245,0.25);
+    --white: #F4F3FF;
+    --muted: rgba(244,243,255,0.45);
+    --border: rgba(255,255,255,0.07);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: var(--black);
+    font-family: var(--sans);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--dark);
+    border: 0.5px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,92,245,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .card-bar {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  }
+
+  .card-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: linear-gradient(var(--white) 1px, transparent 1px), linear-gradient(90deg, var(--white) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  .card-body {
+    padding: 2rem 2rem 0;
+    position: relative;
+  }
+
+  /* Header */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+
+  .logo-mark {
+    width: 52px; height: 52px;
+    background: #1A1030;
+    border-radius: 12px;
+    border: 0.5px solid var(--violet-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-text { display: flex; flex-direction: column; gap: 3px; }
+
+  .company-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .company-name span { color: var(--violet); }
+
+  .company-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .divider {
+    height: 0.5px;
+    background: var(--border);
+    margin-bottom: 2rem;
+  }
+
+  /* Person */
+  .person {
+    margin-bottom: 2.5rem;
+  }
+
+  .person-name {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .person-role {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--violet);
+  }
+
+  /* ── WEBSITE HERO ── */
+  .website-block {
+    position: relative;
+    margin-bottom: 1.25rem;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0A0818;
+    border: 0.5px solid rgba(123,92,245,0.35);
+    padding: 1.5rem 1.75rem;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Glow inside */
+  .website-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(123,92,245,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* Scan line animation */
+  .website-block::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(123,92,245,0.6), transparent);
+    animation: scan 3s linear infinite;
+    top: 0;
+  }
+
+  @keyframes scan {
+    0%   { top: 0%; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .website-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .website-url {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .website-url .url-text {
+    font-size: clamp(16px, 5.5vw, 26px);
+    white-space: nowrap;
+    display: inline;
+  }
+
+  .website-url .dot { color: var(--violet); display: inline; }
+
+  .website-arrow {
+    margin-left: auto;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--violet-dim);
+    border: 0.5px solid var(--violet-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Buttons */
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    border: 0.5px solid var(--border);
+    background: var(--dark2);
+    color: var(--muted);
+  }
+
+  .btn:active { transform: scale(0.98); }
+  .btn:hover { border-color: var(--violet-border); color: var(--white); }
+
+  .btn-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--violet-dim);
+    border: 0.5px solid var(--violet-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-content { display: flex; flex-direction: column; gap: 1px; }
+  .btn-label { font-size: 10px; font-family: var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); }
+  .btn-value { font-size: 13px; font-weight: 500; color: var(--white); }
+
+  /* Footer */
+  .card-footer {
+    border-top: 0.5px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .footer-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--violet);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-bar"></div>
+  <div class="card-grid"></div>
+
+  <div class="card-body">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="logo-mark">
+        <svg width="30" height="30" viewBox="0 0 64 64" fill="none">
+          <polyline points="8,14 18,44 28,24 38,44 52,10" stroke="#7B5CF5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="52" cy="10" r="5" fill="#7B5CF5"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="company-name">Scal<span>yo</span></div>
+        <div class="company-tag">Agence commerciale & digitale</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Person -->
+    <div class="person">
+      <div class="person-name">Areski</div>
+      <div class="person-role">Fondateur &amp; Consultant RevOps</div>
+    </div>
+
+    <!-- Website hero block -->
+    <a href="https://scalyo-ai.com" class="website-block">
+      <div class="website-label" style="font-size:13px;font-family:var(--sans);font-weight:600;letter-spacing:0.05em;text-transform:none;margin-bottom:10px;">Site web</div>
+      <div class="website-url">
+        <span class="url-text">scalyo<span class="dot">-ai</span>.com</span>
+        <div class="website-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7B5CF5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Contact buttons -->
+    <div class="btn-group">
+      <a href="https://calendar.app.google/aV9z5h6Y1VYC5vRt9" class="btn" style="background:var(--violet);border-color:var(--violet);color:#fff;justify-content:center;font-size:15px;font-weight:600;padding:16px 20px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Prendre rendez-vous
+      </a>
+
+      <a href="mailto:projet@scalyo-ai.com" class="btn">
+        <div class="btn-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7B5CF5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="btn-content">
+          <span class="btn-label">Email</span>
+          <span class="btn-value">projet@scalyo-ai.com</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <span class="footer-tag">De la prospection à la performance</span>
+    <div class="footer-dot"></div>
+    <span class="footer-tag">© 2025 Scalyo</span>
+  </div>
+
+</div>
+
+</body>
+</html>
