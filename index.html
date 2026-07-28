@@ -668,17 +668,17 @@
     display: none;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    max-width: 360px;
+    gap: 14px;
+    max-width: 380px;
   }
   .switch-label {
     border: none;
     background: transparent;
     padding: 0;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.4;
     color: rgba(244,243,255,0.4);
     cursor: pointer;
     transition: color .3s ease;
@@ -690,8 +690,8 @@
   .ios-switch {
     position: relative;
     flex-shrink: 0;
-    width: 46px;
-    height: 26px;
+    width: 60px;
+    height: 34px;
     border-radius: 999px;
     background: rgba(255,255,255,0.15);
     border: none;
@@ -703,13 +703,13 @@
     position: absolute;
     top: 3px;
     left: 3px;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: #fff;
     transition: transform .3s cubic-bezier(.4,0,.2,1);
   }
-  .ios-switch.on .ios-switch-knob { transform: translateX(20px); }
+  .ios-switch.on .ios-switch-knob { transform: translateX(26px); }
 
   @media (max-width: 640px) {
     .path-toggle { display: none; }
@@ -879,11 +879,11 @@
     </div>
 
     <div class="mobile-switch-wrap">
-      <button type="button" class="switch-label left active" data-panel="formation">J'apprends à créer mon outil</button>
+      <button type="button" class="switch-label left active" data-panel="formation">J'apprends à créer<br>mon outil</button>
       <button type="button" class="ios-switch" id="iosSwitch" aria-label="Choisir entre formation et délégation">
         <span class="ios-switch-knob"></span>
       </button>
-      <button type="button" class="switch-label right" data-panel="delegation">Je confie la création</button>
+      <button type="button" class="switch-label right" data-panel="delegation">Je confie la<br>création</button>
     </div>
   </div>
 
