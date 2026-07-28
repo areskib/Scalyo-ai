@@ -626,9 +626,9 @@
     justify-content: center;
   }
   .path-toggle-btn {
-    border: none;
-    background: transparent;
-    color: rgba(244,243,255,0.5);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    color: rgba(244,243,255,0.55);
     font-family: 'Space Grotesk', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -638,11 +638,15 @@
     transition: all .2s ease;
     white-space: nowrap;
   }
-  .path-toggle-btn:hover { color: #F4F3FF; }
+  .path-toggle-btn:hover { color: #F4F3FF; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+  .path-toggle-btn:active { transform: scale(0.97); }
   .path-toggle-btn.active {
     background: #8B5CF6;
+    border-color: #8B5CF6;
     color: #fff;
+    box-shadow: 0 6px 20px rgba(139,92,246,0.35);
   }
+  .path-toggle-btn.active:hover { background: #8B5CF6; border-color: #8B5CF6; }
   .path-panel { display: none; }
   .path-panel.active { display: block; }
   @media (max-width: 640px) {
