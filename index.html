@@ -664,6 +664,58 @@
     .path-toggle-btn { white-space: normal; font-size: 13px; padding: 10px 16px; }
   }
 
+  .mobile-switch-wrap {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 360px;
+  }
+  .switch-label {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgba(244,243,255,0.4);
+    cursor: pointer;
+    transition: color .3s ease;
+    flex: 1;
+  }
+  .switch-label.left { text-align: right; }
+  .switch-label.right { text-align: left; }
+  .switch-label.active { color: #F4F3FF; }
+  .ios-switch {
+    position: relative;
+    flex-shrink: 0;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    cursor: pointer;
+    transition: background .3s ease;
+  }
+  .ios-switch.on { background: #8B5CF6; }
+  .ios-switch-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .ios-switch.on .ios-switch-knob { transform: translateX(20px); }
+
+  @media (max-width: 640px) {
+    .path-toggle { display: none; }
+    .mobile-switch-wrap { display: flex; }
+  }
+
   .pricing-card {
     background: var(--dark);
     border: 0.5px solid var(--border);
@@ -824,6 +876,14 @@
       <div class="path-toggle-thumb"></div>
       <button type="button" class="path-toggle-btn active" data-panel="formation">J'apprends à créer mon outil avec l'IA</button>
       <button type="button" class="path-toggle-btn" data-panel="delegation">Je confie la création de mon outil à Scalyo</button>
+    </div>
+
+    <div class="mobile-switch-wrap">
+      <button type="button" class="switch-label left active" data-panel="formation">J'apprends à créer mon outil</button>
+      <button type="button" class="ios-switch" id="iosSwitch" aria-label="Choisir entre formation et délégation">
+        <span class="ios-switch-knob"></span>
+      </button>
+      <button type="button" class="switch-label right" data-panel="delegation">Je confie la création</button>
     </div>
   </div>
 
@@ -1007,6 +1067,7 @@
 
   function setPanel(name) {
     document.querySelectorAll('.path-toggle-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.panel === name));
+    document.querySelectorAll('.switch-label').forEach(btn => btn.classList.toggle('active', btn.dataset.panel === name));
     document.querySelectorAll('.path-panel').forEach(panel => panel.classList.toggle('active', panel.id === 'panel-' + name));
     const activeBtn = document.querySelector('.path-toggle-btn.active');
     const thumb = document.querySelector('.path-toggle-thumb');
@@ -1014,8 +1075,14 @@
       thumb.style.left = activeBtn.offsetLeft + 'px';
       thumb.style.width = activeBtn.offsetWidth + 'px';
     }
+    const iosSwitch = document.getElementById('iosSwitch');
+    if (iosSwitch) iosSwitch.classList.toggle('on', name === 'delegation');
   }
   document.querySelectorAll('[data-panel]').forEach(el => el.addEventListener('click', () => setPanel(el.dataset.panel)));
+  document.getElementById('iosSwitch').addEventListener('click', () => {
+    const current = document.querySelector('.path-panel.active').id.replace('panel-', '');
+    setPanel(current === 'formation' ? 'delegation' : 'formation');
+  });
   setPanel('formation');
   window.addEventListener('load', () => setPanel(document.querySelector('.path-panel.active').id.replace('panel-', '')));
   window.addEventListener('resize', () => {
