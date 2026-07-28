@@ -616,6 +616,7 @@
 
   .path-toggle {
     display: inline-flex;
+    position: relative;
     background: #0D0F14;
     border: 0.5px solid rgba(255,255,255,0.08);
     border-radius: 999px;
@@ -625,9 +626,23 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .path-toggle-thumb {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    width: 0;
+    background: #8B5CF6;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(139,92,246,0.35);
+    transition: left .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+    z-index: 0;
+  }
   .path-toggle-btn {
-    border: 0.5px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.03);
+    position: relative;
+    z-index: 1;
+    border: none;
+    background: transparent;
     color: rgba(244,243,255,0.55);
     font-family: 'Space Grotesk', sans-serif;
     font-size: 14px;
@@ -635,18 +650,14 @@
     padding: 12px 22px;
     border-radius: 999px;
     cursor: pointer;
-    transition: all .2s ease;
+    transition: color .3s ease;
     white-space: nowrap;
   }
-  .path-toggle-btn:hover { color: #F4F3FF; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
-  .path-toggle-btn:active { transform: scale(0.97); }
+  .path-toggle-btn:hover { color: #F4F3FF; }
+  .path-toggle-btn:active { transform: scale(0.98); }
   .path-toggle-btn.active {
-    background: #8B5CF6;
-    border-color: #8B5CF6;
     color: #fff;
-    box-shadow: 0 6px 20px rgba(139,92,246,0.35);
   }
-  .path-toggle-btn.active:hover { background: #8B5CF6; border-color: #8B5CF6; }
   .path-panel { display: none; }
   .path-panel.active { display: block; }
   @media (max-width: 640px) {
@@ -810,6 +821,7 @@
 
   <div style="display:flex; justify-content:center; margin: 2rem 0 3rem;">
     <div class="path-toggle">
+      <div class="path-toggle-thumb"></div>
       <button type="button" class="path-toggle-btn active" data-panel="formation">J'apprends à créer mon outil avec l'IA</button>
       <button type="button" class="path-toggle-btn" data-panel="delegation">Je confie la création de mon outil à Scalyo</button>
     </div>
@@ -996,8 +1008,20 @@
   function setPanel(name) {
     document.querySelectorAll('.path-toggle-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.panel === name));
     document.querySelectorAll('.path-panel').forEach(panel => panel.classList.toggle('active', panel.id === 'panel-' + name));
+    const activeBtn = document.querySelector('.path-toggle-btn.active');
+    const thumb = document.querySelector('.path-toggle-thumb');
+    if (activeBtn && thumb) {
+      thumb.style.left = activeBtn.offsetLeft + 'px';
+      thumb.style.width = activeBtn.offsetWidth + 'px';
+    }
   }
   document.querySelectorAll('[data-panel]').forEach(el => el.addEventListener('click', () => setPanel(el.dataset.panel)));
+  setPanel('formation');
+  window.addEventListener('load', () => setPanel(document.querySelector('.path-panel.active').id.replace('panel-', '')));
+  window.addEventListener('resize', () => {
+    const current = document.querySelector('.path-panel.active');
+    if (current) setPanel(current.id.replace('panel-', ''));
+  });
 </script>
 
 </body>
