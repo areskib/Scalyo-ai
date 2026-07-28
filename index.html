@@ -435,26 +435,6 @@
 
   /* ── PROCESS ── */
 
-  .process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .process-step {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: stretch;
-    border-bottom: 0.5px solid var(--border);
-    transition: background 0.2s;
-  }
-
-  .process-step:last-child { border-bottom: none; }
-  .process-step:hover { background: var(--dark2); }
-
   .step-num {
     display: flex;
     align-items: center;
@@ -627,19 +607,8 @@
     transform: translateY(0);
   }
 
-  
-  .process-connector {
-    position: absolute;
-    top: 18px;
-    right: 0;
-    width: 18px;
-    height: 0;
-    border-top: 1px dashed rgba(139,92,246,0.4);
-  }
   @media (max-width: 900px) {
-    .process-steps { grid-template-columns: 1fr 1fr !important; gap: 28px 0 !important; }
-    .process-step { padding-right: 0 !important; }
-    .process-connector { display: none; }
+    .process-steps { grid-template-columns: 1fr 1fr !important; }
   }
   @media (max-width: 560px) {
     .process-steps { grid-template-columns: 1fr !important; }
@@ -887,66 +856,58 @@
     <div style="margin-top:4.5rem;">
       <p style="text-align:center; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#8B5CF6; margin-bottom:2rem;">Le processus, étape par étape</p>
 
-      <div class="process-steps" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:0;">
+      <div class="process-steps" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:16px;">
 
-        <div class="process-step" style="position:relative; padding-right:20px;">
-          <div class="process-connector"></div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:38px; height:38px; border-radius:10px; background:#0D0F14; border:0.5px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5z"/></svg>
-            </div>
-            <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.35);">01</span>
+      <div class="pricing-card" style="text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div class="pricing-icon" style="margin-bottom:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5z"/></svg>
           </div>
-          <div style="font-size:14px; font-weight:600; color:#F4F3FF; margin-bottom:6px;">On construit</div>
-          <div style="font-size:12.5px; color:rgba(244,243,255,0.45); line-height:1.5;">On conçoit votre outil avec l'IA — structure, contenu, design.</div>
+          <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.3);">01</span>
         </div>
-
-        <div class="process-step" style="position:relative; padding-right:20px;">
-          <div class="process-connector"></div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:38px; height:38px; border-radius:10px; background:#0D0F14; border:0.5px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg>
-            </div>
-            <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.35);">02</span>
+        <div class="pricing-title" style="font-size:16px;">On construit</div>
+        <div class="pricing-desc">On conçoit votre outil avec l'IA — structure, contenu, design.</div>
+      </div>
+      <div class="pricing-card" style="text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div class="pricing-icon" style="margin-bottom:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg>
           </div>
-          <div style="font-size:14px; font-weight:600; color:#F4F3FF; margin-bottom:6px;">On réserve votre adresse</div>
-          <div style="font-size:12.5px; color:rgba(244,243,255,0.45); line-height:1.5;">Achat de votre nom de domaine, à votre nom.</div>
+          <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.3);">02</span>
         </div>
-
-        <div class="process-step" style="position:relative; padding-right:20px;">
-          <div class="process-connector"></div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:38px; height:38px; border-radius:10px; background:#0D0F14; border:0.5px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0-12l-4 4m4-4l4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-            </div>
-            <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.35);">03</span>
+        <div class="pricing-title" style="font-size:16px;">On réserve l'adresse</div>
+        <div class="pricing-desc">Achat de votre nom de domaine, à votre nom.</div>
+      </div>
+      <div class="pricing-card" style="text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div class="pricing-icon" style="margin-bottom:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0-12l-4 4m4-4l4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
           </div>
-          <div style="font-size:14px; font-weight:600; color:#F4F3FF; margin-bottom:6px;">On publie le code</div>
-          <div style="font-size:12.5px; color:rgba(244,243,255,0.45); line-height:1.5;">Le code est enregistré et versionné, chaque évolution est suivie.</div>
+          <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.3);">03</span>
         </div>
-
-        <div class="process-step" style="position:relative; padding-right:20px;">
-          <div class="process-connector"></div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:38px; height:38px; border-radius:10px; background:#0D0F14; border:0.5px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
-            </div>
-            <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.35);">04</span>
+        <div class="pricing-title" style="font-size:16px;">On publie le code</div>
+        <div class="pricing-desc">Le code est enregistré et versionné, chaque évolution est suivie.</div>
+      </div>
+      <div class="pricing-card" style="text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div class="pricing-icon" style="margin-bottom:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
           </div>
-          <div style="font-size:14px; font-weight:600; color:#F4F3FF; margin-bottom:6px;">On déploie</div>
-          <div style="font-size:12.5px; color:rgba(244,243,255,0.45); line-height:1.5;">Votre outil est mis en ligne et accessible à tous.</div>
+          <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.3);">04</span>
         </div>
-
-        <div class="process-step" style="position:relative;">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:38px; height:38px; border-radius:10px; background:#0D0F14; border:0.5px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.6v-2a4 4 0 0 1 4-4h14"/><path d="M7 21.9l-4-4 4-4"/><path d="M21 11.4v2a4 4 0 0 1-4 4H3"/></svg>
-            </div>
-            <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.35);">05</span>
+        <div class="pricing-title" style="font-size:16px;">On déploie</div>
+        <div class="pricing-desc">Votre outil est mis en ligne et accessible à tous.</div>
+      </div>
+      <div class="pricing-card" style="text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div class="pricing-icon" style="margin-bottom:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.6v-2a4 4 0 0 1 4-4h14"/><path d="M7 21.9l-4-4 4-4"/><path d="M21 11.4v2a4 4 0 0 1-4 4H3"/></svg>
           </div>
-          <div style="font-size:14px; font-weight:600; color:#F4F3FF; margin-bottom:6px;">On automatise</div>
-          <div style="font-size:12.5px; color:rgba(244,243,255,0.45); line-height:1.5;">Les évolutions se déploient toutes seules, sans intervention technique.</div>
+          <span style="font-family:'Space Mono',monospace; font-size:11px; color:rgba(244,243,255,0.3);">05</span>
         </div>
+        <div class="pricing-title" style="font-size:16px;">On automatise</div>
+        <div class="pricing-desc">Les évolutions se déploient toutes seules, sans intervention technique.</div>
+      </div>
 
       </div>
     </div>
