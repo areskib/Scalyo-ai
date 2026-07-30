@@ -792,6 +792,25 @@
     .formation-features { grid-template-columns: 1fr !important; }
   }
 
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    z-index: 999;
+    transition: transform .2s ease;
+  }
+  .whatsapp-float:hover { transform: scale(1.08); }
+  @media (max-width: 640px) {
+    .whatsapp-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+  }
 </style>
 </head>
 <body>
@@ -1064,10 +1083,15 @@
   <ul class="footer-links">
     <li><a href="#formation" data-panel="formation">Formation</a></li>
     <li><a href="#tarifs" data-panel="delegation">Offre</a></li>
+    <li><a href="https://wa.me/33759931092" target="_blank" rel="noopener">WhatsApp</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="footer-copy">© 2025 Scalyo — Tous droits réservés</div>
 </footer>
+
+<a href="https://wa.me/33759931092" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contacter sur WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H12a8.44 8.44 0 0 1-4-1L3 21l1.5-4a8.42 8.42 0 0 1-1.5-4.5A8.5 8.5 0 0 1 11.5 3h.5a8.5 8.5 0 0 1 8.5 8.5z"/></svg>
+</a>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
